@@ -22,6 +22,29 @@
  * @param {boolean} isWeekend - Whether it's a weekend
  * @returns {number} The ticket price, or -1 for invalid input
  */
-export function getTicketPrice(age, isWeekend) {
-  // Your code here
+ export function getTicketPrice(age, isWeekend) {
+  // Invalid age check
+  if (typeof age !== "number" || age < 0) {
+    return -1;
+  }
+
+  let price = 0;
+
+  if (age <= 12) {
+    price = 8;
+  } else if (age <= 17) {
+    price = 12;
+  } else if (age <= 59) {
+    price = 15;
+  } else {
+    price = 10; // 60+
+  }
+
+  // Weekend surcharge
+  if (isWeekend === true) {
+    price += 3;
+  }
+
+  return price;
 }
+getTicketPrice(22,true);
